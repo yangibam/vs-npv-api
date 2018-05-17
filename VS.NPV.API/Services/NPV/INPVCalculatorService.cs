@@ -8,6 +8,6 @@ namespace VS.NPV.API.Services.NPV
 {
     public interface INPVCalculatorService
     {
-        List<Models.NPV.NPV> Calculate(NPVRequest request);
+        NPVResponse Calculate(NPVRequest request);
     }
 }

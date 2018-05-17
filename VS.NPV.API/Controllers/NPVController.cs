@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,8 @@ namespace VS.NPV.API.Controllers
             _npvCalculatorService = npvCalculatorService;
         }
 
-        public IActionResult Post([FromBody]NPVRequest request)
+        [HttpPost]
+        public IActionResult Calculate([FromBody]NPVRequest request)
         {
             try
             {
@@ -29,13 +31,13 @@ namespace VS.NPV.API.Controllers
                 {
                     return Ok(result);
                 }
-            }
-            catch
-            {
+
                 return BadRequest("Something went wrong.");
             }
-
-            return BadRequest("Something went wrong.");
+            catch(Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }            
         }
     }
 }

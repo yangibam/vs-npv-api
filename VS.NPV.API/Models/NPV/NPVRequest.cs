@@ -7,7 +7,6 @@ namespace VS.NPV.API.Models.NPV
 {
     public class NPVRequest
     {
-        public int Period { get; set; }
         public double LowerDiscount { get; set; }
         public double UpperDiscount { get; set; }
         public double DiscountIncrement { get; set; }
