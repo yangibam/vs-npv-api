@@ -27,6 +27,15 @@ namespace VS.NPV.API
         {
             services.AddSingleton<INPVCalculatorService, NPVCalculatorService>();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials());
+            });
+
             services.AddMvc();
 
             services.AddSwaggerGen(c =>
@@ -49,6 +58,12 @@ namespace VS.NPV.API
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "NPV Api");
             });
+
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
 
             app.UseMvc();
         }
