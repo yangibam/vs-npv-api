@@ -57,7 +57,7 @@ namespace VS.NPV.API.Services.NPV
                 throw new ArgumentException("Invalid discount rate");
             }
 
-            if(request?.DiscountIncrement < 1 || request?.DiscountIncrement > 100)
+            if(request?.DiscountIncrement <= 0 || request?.DiscountIncrement > 100)
             {
                 throw new ArgumentException("Invalid discount increment");
             }
